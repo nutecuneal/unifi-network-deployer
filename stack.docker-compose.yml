@@ -29,6 +29,12 @@ services:
       # - 8880:8880 #optional
       # - 6789:6789 #optional
       # - 5514:5514/udp #optional
+    healthcheck:
+      test: [ 'CMD', 'curl', '-fsI', 'http://localhost:8080' ]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 10s
     deploy:
           mode: global
           restart_policy:
